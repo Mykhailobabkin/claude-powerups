@@ -88,7 +88,7 @@ You can still browse and edit the vault files with any text editor — they are 
 
 ## Credits
 
-Created by [Misha Babkin](https://twitter.com/babkin_ai)
+Created by [Mykhailo Babkin](https://x.com/babkin_ai)
 
 Built with [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
 

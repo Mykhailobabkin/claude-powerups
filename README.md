@@ -61,7 +61,7 @@ skills/your-skill-name/
 
 ## Credits
 
-Built by [Misha Babkin](https://x.com/babkin_ai) with Claude Code.
+Built by [Mykhailo Babkin](https://x.com/babkin_ai) with Claude Code.
 
 ## License
 
