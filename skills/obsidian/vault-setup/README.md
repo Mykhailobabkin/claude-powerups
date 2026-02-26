@@ -1,8 +1,8 @@
-# Claude Memory Setup
+# Vault Setup
 
 **Give Claude Code persistent memory with an Obsidian knowledge base.**
 
-A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that sets up a personal knowledge base Claude can read and write across every conversation.
+A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that sets up a personal knowledge base Claude can read and write across every conversation. Part of the [Obsidian collection](../).
 
 ---
 
@@ -47,10 +47,10 @@ cd claude-powerups
 ```bash
 git clone https://github.com/Mykhailobabkin/claude-powerups.git
 mkdir -p ~/.claude/skills
-cp claude-powerups/skills/claude-memory-setup/SKILL.md ~/.claude/skills/claude-memory-setup.md
+cp claude-powerups/skills/obsidian/vault-setup/SKILL.md ~/.claude/skills/vault-setup.md
 ```
 
-Then start a new Claude Code session and type `/claude-memory-setup` or say "set up my knowledge base".
+Then start a new Claude Code session and type `/vault-setup` or say "set up my knowledge base".
 
 ## How It Works
 
@@ -67,6 +67,12 @@ The wizard runs in 7 phases:
 | **7. Verify** | Test that everything works and get a quick-reference card |
 
 The wizard adapts to your experience level. Beginners get full explanations of what Obsidian is, why Git matters, and how triggers work. Experienced users get straight to the point.
+
+## Related Skills
+
+- [obsidian-markdown](../obsidian-markdown/) — Reference for Obsidian-flavored markdown syntax
+- [obsidian-bases](../obsidian-bases/) — Reference for creating `.base` database views
+- [obsidian-canvas](../obsidian-canvas/) — Reference for creating `.canvas` visual files
 
 ## Example Result
 

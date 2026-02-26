@@ -16,18 +16,16 @@ echo ""
 # Create skills directory if it doesn't exist
 mkdir -p "$SKILLS_DIR"
 
-# Find all skills (directories containing SKILL.md)
+# Find all skills (any directory containing SKILL.md, at any depth)
 INSTALLED=0
-for skill_dir in "$REPO_DIR"/skills/*/; do
+while IFS= read -r skill_file; do
+    skill_dir=$(dirname "$skill_file")
     skill_name=$(basename "$skill_dir")
-    skill_file="$skill_dir/SKILL.md"
 
-    if [ -f "$skill_file" ]; then
-        cp "$skill_file" "$SKILLS_DIR/$skill_name.md"
-        echo "  Installed: $skill_name"
-        INSTALLED=$((INSTALLED + 1))
-    fi
-done
+    cp "$skill_file" "$SKILLS_DIR/$skill_name.md"
+    echo "  Installed: $skill_name"
+    INSTALLED=$((INSTALLED + 1))
+done < <(find "$REPO_DIR/skills" -name "SKILL.md" -type f | sort)
 
 echo ""
 if [ $INSTALLED -eq 0 ]; then
@@ -38,5 +36,5 @@ fi
 echo "  Done! $INSTALLED skill(s) installed to $SKILLS_DIR"
 echo ""
 echo "  Start a new Claude Code session to use them."
-echo "  Run /claude-memory-setup to set up persistent memory."
+echo "  Run /vault-setup to set up persistent memory with Obsidian."
 echo ""

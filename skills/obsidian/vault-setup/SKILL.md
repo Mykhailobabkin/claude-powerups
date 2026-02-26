@@ -1,11 +1,11 @@
 ---
-name: claude-memory-setup
+name: vault-setup
 description: |
   Interactive wizard that sets up persistent memory for Claude Code using Obsidian + GitHub.
-  Guides users through installing Obsidian, creating a personalized vault, backing it up to
-  GitHub, and integrating it with Claude Code via CLAUDE.md trigger phrases. Use when the user
-  mentions "knowledge base," "set up obsidian," "persistent memory," "vault setup,"
-  "obsidian claude," "claude memory," or invokes "/claude-memory-setup."
+  Part of the Obsidian collection. Guides users through installing Obsidian, creating a
+  personalized vault, backing it up to GitHub, and integrating it with Claude Code via CLAUDE.md
+  trigger phrases. Use when the user mentions "knowledge base," "set up obsidian," "persistent
+  memory," "vault setup," "obsidian claude," "claude memory," or invokes "/vault-setup."
 ---
 
 ## How This Skill Works
