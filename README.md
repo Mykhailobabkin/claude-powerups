@@ -6,7 +6,7 @@
 
 ### Obsidian Collection
 
-4 skills that make Claude fluent in [Obsidian](https://obsidian.md). [Collection overview →](skills/obsidian/)
+5 skills that make Claude fluent in [Obsidian](https://obsidian.md). [Collection overview →](skills/obsidian/)
 
 | Power-Up | Type | What It Does |
 |----------|------|-------------|
@@ -14,6 +14,7 @@
 | [obsidian-markdown](skills/obsidian/obsidian-markdown/) | Passive reference | Teaches Claude every Obsidian-flavored markdown feature — wikilinks, embeds, callouts, properties, tags |
 | [obsidian-bases](skills/obsidian/obsidian-bases/) | Passive reference | Teaches Claude to create `.base` files with views, filters, formulas, and summaries |
 | [obsidian-canvas](skills/obsidian/obsidian-canvas/) | Passive reference | Teaches Claude to create `.canvas` files with nodes, edges, groups, and layouts |
+| [obsidian-cleanup](skills/obsidian/obsidian-cleanup/) | Interactive wizard | Audits vault health and keeps CLAUDE.md in sync with reality. `/obsidian-cleanup` |
 
 ## Quick Install
 

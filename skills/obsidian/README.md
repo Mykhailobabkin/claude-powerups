@@ -1,6 +1,6 @@
 # Obsidian Collection
 
-**4 skills that make Claude Code fluent in Obsidian.** From creating a vault from scratch to writing perfect `.base` and `.canvas` files.
+**5 skills that make Claude Code fluent in Obsidian.** From creating a vault from scratch to writing perfect `.base` and `.canvas` files — and keeping everything healthy over time.
 
 ## Skills
 
@@ -10,6 +10,7 @@
 | [obsidian-markdown](obsidian-markdown/) | Passive reference | Teaches Claude every Obsidian-flavored markdown feature (wikilinks, embeds, callouts, properties, etc.) |
 | [obsidian-bases](obsidian-bases/) | Passive reference | Teaches Claude to create `.base` files with views, filters, formulas, and summaries |
 | [obsidian-canvas](obsidian-canvas/) | Passive reference | Teaches Claude to create `.canvas` files with nodes, edges, groups, and layouts |
+| [obsidian-cleanup](obsidian-cleanup/) | Interactive wizard | Audits vault health and keeps CLAUDE.md in sync with reality. `/obsidian-cleanup` |
 
 ## How They Work Together
 
@@ -20,6 +21,8 @@
 - Editing a `.md` file in your vault? Claude uses **obsidian-markdown** for correct wikilinks, callouts, and properties.
 - Creating a `.base` file for a dynamic view? Claude uses **obsidian-bases** for valid filters, formulas, and view configs.
 - Building a `.canvas` for a visual layout? Claude uses **obsidian-canvas** for correct node types, edges, and coordinates.
+
+**Keep it healthy:** Run `/obsidian-cleanup` periodically. It audits your vault — frontmatter, links, naming, plugin sync — and keeps your CLAUDE.md documentation in sync with what actually exists.
 
 ## Install All
 
