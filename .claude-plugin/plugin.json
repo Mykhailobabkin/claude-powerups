@@ -1,0 +1,8 @@
+{
+  "name": "claude-powerups",
+  "description": "Power-ups for Claude Code — Obsidian skills, Personal OS plugin, and more.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mykhailo Babkin"
+  }
+}

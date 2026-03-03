@@ -1,0 +1,45 @@
+"""
+Log a {{domain_name}} entry.
+Usage: python3 log_{{domain_slug}}.py {{#each cli_args}}--{{this.flag}} VALUE {{/each}}
+"""
+import argparse
+import sqlite3
+from datetime import date
+from pathlib import Path
+
+DB_PATH = Path(__file__).parent / "{{domain_slug}}.db"
+
+
+def log_entry(args):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    entry_date = args.date or date.today().isoformat()
+
+    c.execute(
+        """INSERT INTO {{table_name}} (date, {{insert_columns}})
+           VALUES (?, {{insert_placeholders}})""",
+        (entry_date, {{insert_args}})
+    )
+
+    conn.commit()
+    conn.close()
+    print(f"Logged {{domain_name}} entry for {entry_date}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Log a {{domain_name}} entry")
+    parser.add_argument("--date", type=str, default=None,
+                        help="Entry date (YYYY-MM-DD). Defaults to today.")
+    {{#each cli_args}}
+    parser.add_argument("--{{this.flag}}", type={{this.type}},
+                        {{#if this.required}}required=True,{{/if}}
+                        help="{{this.help}}")
+    {{/each}}
+
+    args = parser.parse_args()
+    log_entry(args)
+
+
+if __name__ == "__main__":
+    main()

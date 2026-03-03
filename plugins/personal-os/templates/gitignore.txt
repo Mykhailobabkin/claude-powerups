@@ -1,0 +1,21 @@
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/cache/
+.obsidian/backups/
+
+# System
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Temporary
+.trash/
+*.tmp
+
+# Python (if using data scripts)
+__pycache__/
+*.pyc
+.env

@@ -1,0 +1,10 @@
+{
+  "name": "personal-os",
+  "description": "Build a Personal OS with Obsidian + SQLite + Python scripts. Interactive wizard for bootstrapping new vaults or migrating existing ones.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mykhailo Babkin"
+  },
+  "repository": "https://github.com/Mykhailobabkin/claude-powerups",
+  "license": "MIT"
+}
