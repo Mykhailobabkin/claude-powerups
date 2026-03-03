@@ -7,10 +7,10 @@
 | Skill | Type | What It Does |
 |-------|------|-------------|
 | [vault-setup](vault-setup/) | Interactive wizard | Creates a full Obsidian vault with GitHub backup and Claude Code integration |
+| [obsidian-cleanup](obsidian-cleanup/) | Interactive workflow | Comprehensive vault health check — frontmatter, links, naming, task board, bases |
 | [obsidian-markdown](obsidian-markdown/) | Passive reference | Teaches Claude every Obsidian-flavored markdown feature (wikilinks, embeds, callouts, properties, etc.) |
 | [obsidian-bases](obsidian-bases/) | Passive reference | Teaches Claude to create `.base` files with views, filters, formulas, and summaries |
 | [obsidian-canvas](obsidian-canvas/) | Passive reference | Teaches Claude to create `.canvas` files with nodes, edges, groups, and layouts |
-| [obsidian-cleanup](obsidian-cleanup/) | Interactive wizard | Audits vault health and keeps CLAUDE.md in sync with reality. `/obsidian-cleanup` |
 
 ## How They Work Together
 

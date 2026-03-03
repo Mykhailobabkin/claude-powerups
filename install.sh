@@ -22,7 +22,16 @@ while IFS= read -r skill_file; do
     skill_dir=$(dirname "$skill_file")
     skill_name=$(basename "$skill_dir")
 
-    cp "$skill_file" "$SKILLS_DIR/$skill_name.md"
+    # Remove old flat-file install if it exists
+    rm -f "$SKILLS_DIR/$skill_name.md"
+
+    # Copy the full skill directory (preserves examples/, etc.)
+    rm -rf "$SKILLS_DIR/$skill_name"
+    cp -r "$skill_dir" "$SKILLS_DIR/$skill_name"
+
+    # Remove README.md from installed copy (it's for GitHub, not for Claude)
+    rm -f "$SKILLS_DIR/$skill_name/README.md"
+
     echo "  Installed: $skill_name"
     INSTALLED=$((INSTALLED + 1))
 done < <(find "$REPO_DIR/skills" -name "SKILL.md" -type f | sort)

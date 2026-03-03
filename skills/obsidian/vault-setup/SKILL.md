@@ -227,6 +227,16 @@ After all questions, confirm:
 
 Use the **Bash** tool to create all directories with `mkdir -p`, then use the **Write** tool to create each file. Build everything in `VAULT_PATH`.
 
+### Companion Skill References
+
+When building vault files, follow these syntax rules from the companion Obsidian skills (they load automatically if installed):
+
+- **obsidian-markdown** — Use proper Obsidian-flavored markdown: `[[wikilinks]]` for internal links, YAML frontmatter delimited by `---`, callout syntax (`> [!note]`) where appropriate, and `#tags` in frontmatter arrays.
+- **obsidian-bases** — If creating any `.base` dashboard files, follow the Bases syntax for views, filters, formulas, and summaries.
+- **obsidian-canvas** — If creating any `.canvas` files for visual layouts, follow the JSON Canvas spec for nodes, edges, groups, and coordinates.
+
+These skills provide the full syntax reference. If they are not installed, the above summary covers the essentials.
+
 ### 4a. Home.md
 
 Create `[VAULT_PATH]/Home.md`:

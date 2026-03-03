@@ -6,6 +6,7 @@ description: |
   match reality. Works with any Obsidian vault — no hardcoded schemas or paths.
   Use when user mentions "vault cleanup", "vault health", "obsidian audit",
   "check my vault", or invokes "/obsidian-cleanup".
+disable-model-invocation: true
 ---
 
 # Obsidian Vault Cleanup
@@ -31,15 +32,13 @@ An interactive vault audit that discovers your vault's structure and conventions
 
 ### Step 0a: Locate the Vault
 
-Find the vault root (the directory containing `.obsidian/`):
+Find the vault root using this priority order:
 
-1. Check the current working directory for `.obsidian/`
-2. If not found, check common locations:
-   - `~/Documents/MyVault/`
-   - `~/Documents/Obsidian/`
-   - `~/Obsidian/`
-   - `~/vault/`
-3. If still not found, use AskUserQuestion: "Where is your Obsidian vault?"
+1. **Argument:** If the user provided a path (e.g., `/obsidian-cleanup ~/my-vault`), use that path.
+2. **CLAUDE.md detection:** Read `~/.claude/CLAUDE.md`, find the `## Obsidian Vault` section, extract the path from the `**Location:**` line.
+3. **Current directory:** Check the current working directory for `.obsidian/`.
+4. **Common locations:** Check `~/Documents/MyVault/`, `~/Documents/Obsidian/`, `~/Obsidian/`, `~/vault/`.
+5. **Ask the user:** Use AskUserQuestion: "Where is your Obsidian vault?"
 
 Store the vault path for all subsequent phases.
 
