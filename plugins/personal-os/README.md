@@ -20,9 +20,16 @@ The Personal OS plugin transforms an Obsidian vault into a structured operating 
 | Setup Wizard | `/personal-os:setup` | Full interactive setup — bootstrap a new vault or migrate an existing one |
 | Vault Scanner | `/personal-os:scan` | Scan any Obsidian vault and produce a structured discovery report |
 
-## Quick Start
+## Install
 
-### Load for a session
+**From the marketplace** (inside Claude Code):
+
+```
+/plugin marketplace add Mykhailobabkin/claude-powerups
+/plugin install personal-os@claude-powerups
+```
+
+**Or load directly** (for development):
 
 ```bash
 git clone https://github.com/Mykhailobabkin/claude-powerups.git
@@ -30,15 +37,6 @@ claude --plugin-dir ./claude-powerups/plugins/personal-os
 ```
 
 Then run `/personal-os:setup` to start the wizard.
-
-### Install with the repo's skills
-
-```bash
-cd claude-powerups
-./install.sh
-```
-
-This installs the Obsidian skills and shows you how to load the plugin.
 
 ## Two Modes
 
