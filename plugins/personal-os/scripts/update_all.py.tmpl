@@ -1,0 +1,44 @@
+"""
+Update all generated overviews.
+Run: python3 update_all.py
+"""
+import importlib
+import sys
+from pathlib import Path
+
+# Add scripts directory to path
+SCRIPTS_DIR = Path(__file__).parent
+sys.path.insert(0, str(SCRIPTS_DIR))
+
+GENERATORS = [
+    {{#each generators}}
+    "generate_{{this}}",
+    {{/each}}
+]
+
+
+def update_all():
+    print("Updating all overviews...\n")
+    results = []
+
+    for gen_name in GENERATORS:
+        try:
+            module = importlib.import_module(gen_name)
+            module.generate()
+            results.append((gen_name, "OK"))
+        except FileNotFoundError as e:
+            results.append((gen_name, f"DB not found: {e}"))
+        except Exception as e:
+            results.append((gen_name, f"ERROR: {e}"))
+
+    print("\n" + "=" * 40)
+    print("  Update Summary")
+    print("=" * 40)
+    for name, status in results:
+        icon = "✓" if status == "OK" else "✗"
+        print(f"  {icon} {name}: {status}")
+    print("=" * 40)
+
+
+if __name__ == "__main__":
+    update_all()

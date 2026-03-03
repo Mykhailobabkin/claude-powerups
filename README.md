@@ -4,18 +4,34 @@
 
 ## Available Power-Ups
 
-### Obsidian Collection
+### Personal OS Plugin
 
-5 skills that make Claude fluent in [Obsidian](https://obsidian.md). [Collection overview →](skills/obsidian/)
+Build a complete Personal OS — an Obsidian vault with SQLite databases, Python scripts, and Obsidian Bases for managing your entire life. [Plugin overview →](plugins/personal-os/)
 
 | Power-Up | Type | What It Does |
 |----------|------|-------------|
-| [vault-setup](skills/obsidian/vault-setup/) | Interactive wizard | Creates a full Obsidian vault with GitHub backup and Claude Code integration. `/vault-setup` |
-| [obsidian-cleanup](skills/obsidian/obsidian-cleanup/) | Interactive workflow | Comprehensive vault health check — frontmatter, links, naming, task board, bases. `/obsidian-cleanup` |
+| [personal-os:setup](plugins/personal-os/skills/setup/) | Interactive wizard | Builds a full Personal OS vault from scratch or migrates an existing one. `/personal-os:setup` |
+| [personal-os:scan](plugins/personal-os/skills/scan/) | Interactive workflow | Scans any Obsidian vault and produces a structured discovery report. `/personal-os:scan` |
+
+### Obsidian Skills
+
+4 skills that make Claude fluent in [Obsidian](https://obsidian.md). Used as companions by the Personal OS plugin. [Collection overview →](skills/obsidian/)
+
+| Power-Up | Type | What It Does |
+|----------|------|-------------|
+| [obsidian-cleanup](skills/obsidian/obsidian-cleanup/) | Interactive workflow | Comprehensive vault health check — frontmatter, links, naming, bases. `/obsidian-cleanup` |
 | [obsidian-markdown](skills/obsidian/obsidian-markdown/) | Passive reference | Teaches Claude every Obsidian-flavored markdown feature — wikilinks, embeds, callouts, properties, tags |
 | [obsidian-bases](skills/obsidian/obsidian-bases/) | Passive reference | Teaches Claude to create `.base` files with views, filters, formulas, and summaries |
 | [obsidian-canvas](skills/obsidian/obsidian-canvas/) | Passive reference | Teaches Claude to create `.canvas` files with nodes, edges, groups, and layouts |
-| [obsidian-cleanup](skills/obsidian/obsidian-cleanup/) | Interactive wizard | Audits vault health and keeps CLAUDE.md in sync with reality. `/obsidian-cleanup` |
+
+> **Note:** `/vault-setup` has been replaced by `/personal-os:setup`, which does everything vault-setup did and more (SQLite databases, Python scripts, data layer design).
+
+A plugin that builds a complete Personal OS — an Obsidian vault with SQLite databases, Python scripts, and Obsidian Bases for managing your entire life. [Plugin overview →](plugins/personal-os/)
+
+| Power-Up | Type | What It Does |
+|----------|------|-------------|
+| [personal-os:setup](plugins/personal-os/skills/setup/) | Interactive wizard | Builds a full Personal OS vault from scratch or migrates an existing vault. `/personal-os:setup` |
+| [personal-os:scan](plugins/personal-os/skills/scan/) | Interactive workflow | Scans any Obsidian vault and produces a structured discovery report. `/personal-os:scan` |
 
 ## Quick Install
 
@@ -25,27 +41,35 @@ cd claude-powerups
 ./install.sh
 ```
 
-This copies all skills to `~/.claude/skills/`. Start a new Claude Code session and they're ready to use.
+This installs skills to `~/.claude/skills/` and shows how to load plugins.
+
+### Load the Personal OS Plugin
+
+Plugins use Claude Code's native plugin system:
+
+```bash
+claude --plugin-dir ./plugins/personal-os
+```
+
+Then run `/personal-os:setup` to start the wizard.
 
 ### Install a Single Skill
 
-If you only want one:
-
 ```bash
 mkdir -p ~/.claude/skills
-cp -r skills/obsidian/vault-setup ~/.claude/skills/vault-setup
+cp -r skills/obsidian/obsidian-bases ~/.claude/skills/obsidian-bases
 ```
 
-Replace the path with whichever skill you want. The directory name becomes the skill name.
+Replace the path with whichever skill you want.
 
-## What Are Claude Code Skills?
+## What Are Skills and Plugins?
 
-Skills are markdown files that teach Claude new workflows. Drop a `.md` file into `~/.claude/skills/` and Claude gains a new capability — no plugins, no APIs, no config.
+**Skills** are markdown files that teach Claude new workflows. Drop one into `~/.claude/skills/` and Claude gains a new capability — no APIs, no config.
 
-There are two types:
+- **Interactive skills** have a slash command (e.g., `/obsidian-cleanup`). You invoke them and Claude runs a workflow.
+- **Passive reference skills** load automatically based on context. When Claude edits a `.base` file, it loads `obsidian-bases` without you asking.
 
-- **Interactive skills** have a slash command (e.g., `/vault-setup`). You invoke them and Claude runs an interactive workflow.
-- **Passive reference skills** load automatically based on context. When Claude sees you're editing an Obsidian `.base` file, it loads the `obsidian-bases` reference without you asking.
+**Plugins** bundle multiple related skills with templates and scripts. They use Claude Code's native plugin system with namespaced commands (e.g., `/personal-os:setup`).
 
 ## Contributing
 
@@ -72,6 +96,28 @@ skills/
 ```
 
 The installer finds every `SKILL.md` at any depth and installs it using the parent directory name as the skill name.
+
+### Plugin Structure
+
+Plugins bundle multiple related skills with templates and scripts:
+
+```
+plugins/
+└── plugin-name/
+    ├── .claude-plugin/
+    │   └── plugin.json          ← Manifest (name, description, skills)
+    ├── README.md                ← Documentation
+    ├── CLAUDE.md                ← Project docs for Claude
+    ├── skills/
+    │   ├── skill-one/
+    │   │   └── SKILL.md
+    │   └── skill-two/
+    │       └── SKILL.md
+    ├── templates/               ← File templates used by skills
+    └── scripts/                 ← Script templates used by skills
+```
+
+Plugins use Claude Code's native plugin system. Load with `claude --plugin-dir ./plugins/plugin-name`. Skills are auto-namespaced (e.g., `/personal-os:setup`).
 
 ## Credits
 

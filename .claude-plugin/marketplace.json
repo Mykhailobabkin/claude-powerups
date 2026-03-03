@@ -1,0 +1,23 @@
+{
+  "name": "claude-powerups",
+  "owner": {
+    "name": "Mykhailo Babkin",
+    "email": "babkin.ai@gmail.com"
+  },
+  "metadata": {
+    "description": "Power-ups for Claude Code. Obsidian skills, Personal OS plugin, and more.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "personal-os",
+      "source": "./plugins/personal-os",
+      "description": "Build a Personal OS with Obsidian + SQLite + Python scripts. Interactive wizard for bootstrapping new vaults or migrating existing ones.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Mykhailo Babkin"
+      },
+      "keywords": ["obsidian", "personal-os", "sqlite", "productivity", "vault"]
+    }
+  ]
+}

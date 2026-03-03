@@ -1,0 +1,92 @@
+"""
+Generate {{domain_name}} overview from database.
+Writes to: {{output_path}}
+Run: python3 generate_{{domain_slug}}.py
+"""
+import sqlite3
+from datetime import date, datetime, timedelta
+from pathlib import Path
+
+DB_PATH = Path(__file__).parent / "{{domain_slug}}.db"
+OUTPUT_PATH = Path(__file__).parent.parent / "{{output_relative_path}}"
+
+
+def fmt_num(n):
+    """Format numbers for display."""
+    if n is None:
+        return "—"
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    if n >= 1_000:
+        return f"{n / 1_000:.1f}K"
+    return str(int(n)) if n == int(n) else f"{n:.1f}"
+
+
+def generate():
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    today = date.today()
+
+    lines = []
+
+    # Frontmatter
+    lines.append("---")
+    lines.append("tags:")
+    lines.append("  - {{domain_tag}}")
+    lines.append("  - overview")
+    lines.append("auto_generated: true")
+    lines.append("---\n")
+
+    lines.append(f"# {{domain_name}} Overview")
+    lines.append(f"*Auto-generated · {today.strftime('%B %d, %Y')}*\n")
+
+    # Summary stats
+    lines.append("## Summary")
+    {{#each summary_queries}}
+    c.execute("{{this.sql}}")
+    result = c.fetchone()
+    lines.append(f"- **{{this.label}}:** {fmt_num(result[0])}")
+    {{/each}}
+
+    # Recent entries
+    lines.append("\n## Recent Entries")
+    lines.append("| Date | {{table_headers}} |")
+    lines.append("|------|{{table_separators}}|")
+
+    c.execute("""
+        SELECT date, {{select_columns}}
+        FROM {{table_name}}
+        ORDER BY date DESC
+        LIMIT 20
+    """)
+    for row in c.fetchall():
+        date_str = row[0]
+        {{#each table_columns}}
+        col_{{@index}} = {{this.formatter}}(row[{{this.index}}])
+        {{/each}}
+        lines.append(f"| {date_str} | {{row_format}} |")
+
+    {{#if trends}}
+    # Trends (last 30 days vs previous 30 days)
+    lines.append("\n## Trends")
+    {{#each trends}}
+    c.execute("{{this.current_sql}}")
+    current = c.fetchone()[0] or 0
+    c.execute("{{this.previous_sql}}")
+    previous = c.fetchone()[0] or 0
+    change = current - previous
+    direction = "↑" if change > 0 else "↓" if change < 0 else "→"
+    lines.append(f"- **{{this.label}}:** {fmt_num(current)} {direction} ({fmt_num(abs(change))} vs prev period)")
+    {{/each}}
+    {{/if}}
+
+    conn.close()
+
+    # Write output
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"Generated {OUTPUT_PATH}")
+
+
+if __name__ == "__main__":
+    generate()
