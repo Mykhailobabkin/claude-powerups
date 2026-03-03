@@ -57,7 +57,7 @@ cd claude-powerups
 ```bash
 git clone https://github.com/Mykhailobabkin/claude-powerups.git
 mkdir -p ~/.claude/skills
-cp claude-powerups/skills/obsidian/obsidian-cleanup/SKILL.md ~/.claude/skills/obsidian-cleanup.md
+cp -r claude-powerups/skills/obsidian/obsidian-cleanup ~/.claude/skills/obsidian-cleanup
 ```
 
 Then start a new Claude Code session and type `/obsidian-cleanup` or say "check my vault".

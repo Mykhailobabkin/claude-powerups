@@ -11,6 +11,7 @@
 | Power-Up | Type | What It Does |
 |----------|------|-------------|
 | [vault-setup](skills/obsidian/vault-setup/) | Interactive wizard | Creates a full Obsidian vault with GitHub backup and Claude Code integration. `/vault-setup` |
+| [obsidian-cleanup](skills/obsidian/obsidian-cleanup/) | Interactive workflow | Comprehensive vault health check — frontmatter, links, naming, task board, bases. `/obsidian-cleanup` |
 | [obsidian-markdown](skills/obsidian/obsidian-markdown/) | Passive reference | Teaches Claude every Obsidian-flavored markdown feature — wikilinks, embeds, callouts, properties, tags |
 | [obsidian-bases](skills/obsidian/obsidian-bases/) | Passive reference | Teaches Claude to create `.base` files with views, filters, formulas, and summaries |
 | [obsidian-canvas](skills/obsidian/obsidian-canvas/) | Passive reference | Teaches Claude to create `.canvas` files with nodes, edges, groups, and layouts |
@@ -32,10 +33,10 @@ If you only want one:
 
 ```bash
 mkdir -p ~/.claude/skills
-cp skills/obsidian/vault-setup/SKILL.md ~/.claude/skills/vault-setup.md
+cp -r skills/obsidian/vault-setup ~/.claude/skills/vault-setup
 ```
 
-Replace the path with whichever skill you want. The installed filename becomes the skill name.
+Replace the path with whichever skill you want. The directory name becomes the skill name.
 
 ## What Are Claude Code Skills?
 
