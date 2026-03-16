@@ -1,6 +1,6 @@
 # Claude Power-Ups
 
-**Skills and plugins that make Claude Code actually useful.** Drop them in and Claude gains new capabilities — Obsidian fluency, vault building, data layer design, and more.
+**Skills and plugins that make Claude Code actually useful.** Drop them in and Claude gains new capabilities — YouTube video analysis, Obsidian fluency, vault building, and more.
 
 ## What's Inside
 
@@ -12,6 +12,16 @@ An interactive wizard that builds a complete Personal OS — an Obsidian vault w
 |---------|-------------|
 | `/personal-os:setup` | Interactive wizard — bootstrap a new vault or migrate an existing one |
 | `/personal-os:scan` | Scan any Obsidian vault and produce a structured discovery report |
+
+### YouTube Analyze Skill
+
+Pull transcripts from YouTube videos and compile insights into articles, summaries, or comparisons. No API keys required. [Read more →](skills/youtube-analyze/)
+
+| Command | What It Does |
+|---------|-------------|
+| `/youtube-analyze` | Pass YouTube URLs → pulls transcripts → analyzes content → produces article/summary |
+
+**How it works:** A Python script (`youtube-transcript-api` + `yt-dlp`) fetches transcripts, then Claude analyzes them in-context. Handles 30+ videos in a single session.
 
 ### Obsidian Skills
 
@@ -50,7 +60,13 @@ cd claude-powerups
 ./install.sh
 ```
 
-This installs all Obsidian skills to `~/.claude/skills/`. For the Personal OS plugin, start Claude with:
+This installs all skills to `~/.claude/skills/`. For the YouTube skill, also install the Python dependency:
+
+```bash
+pip3 install youtube-transcript-api
+```
+
+For the Personal OS plugin, start Claude with:
 
 ```bash
 claude --plugin-dir ./plugins/personal-os
@@ -58,15 +74,17 @@ claude --plugin-dir ./plugins/personal-os
 
 ### Option 3: Install a Single Skill
 
-If you only want one Obsidian skill (no plugin needed):
-
 ```bash
 git clone https://github.com/Mykhailobabkin/claude-powerups.git
 mkdir -p ~/.claude/skills
-cp -r claude-powerups/skills/obsidian/obsidian-bases ~/.claude/skills/obsidian-bases
-```
 
-Replace `obsidian-bases` with whichever skill you want.
+# Obsidian skill (pick one):
+cp -r claude-powerups/skills/obsidian/obsidian-bases ~/.claude/skills/obsidian-bases
+
+# YouTube analyzer:
+cp -r claude-powerups/skills/youtube-analyze ~/.claude/skills/youtube-analyze
+pip3 install youtube-transcript-api
+```
 
 ## How It Works
 
