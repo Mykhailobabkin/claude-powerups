@@ -2,7 +2,7 @@
 
 ## Vault Context
 
-Vault path: `~/BRAIN/Work/Tools/Claude Powerups/project.md`
+Vault path: `~/BRAIN/Work/Personal Tools/Claude Powerups/Claude Powerups Project.md`
 
 ## Architecture
 
@@ -87,6 +87,6 @@ find skills -name "SKILL.md" -type f | sort
 
 - **Claude Code HAS a native plugin system.** Don't reinvent — it exists since v1.0.33. Always check official docs before claiming a feature doesn't exist.
 - **Everything must be universal.** No references to Misha's vault structure (BRAIN, Body, Brand, etc.) in templates. All content is discovered through interviews or scans.
-- **Repo location.** The repo is at `~/Developer/personal/claude-powerups/`, not `~/claude-powerups/`.
+- **Repo location.** The repo is at `~/Developer/personal/projects/claude-powerups/`, not `~/claude-powerups/`.
 - **vault-setup is retired.** `/personal-os:setup` is a superset of the old `/vault-setup` skill. Don't recreate it.
 - **README duplication on merge.** After merging PRs, re-read the merged file to check for duplicates or merge artifacts.
