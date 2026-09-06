@@ -1,5 +1,12 @@
 .DS_Store
 
 # agent planning
-docs/
 .planning/
+
+# Documentation standard and local-only state
+.superpowers/
+.claude/rules/
+.claude/settings.local.json
+.worktrees/
+!docs/
+!docs/**
