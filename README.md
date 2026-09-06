@@ -156,3 +156,7 @@ Built by [Mykhailo Babkin](https://x.com/babkin_ai) with Claude Code.
 ## License
 
 MIT
+
+## Project documentation
+
+[Documentation](docs/README.md) · [Project context](docs/project.md) · [Agent guide](CLAUDE.md) · [Changelog](CHANGELOG.md)

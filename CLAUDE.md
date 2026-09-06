@@ -1,92 +1,31 @@
-# Claude Powerups — Guide for Claude
+# Claude Powerups — Agent Guide
 
-## Vault Context
+## Docs map
 
-Vault path: `~/BRAIN/Work/Personal Tools/Claude Powerups/Claude Powerups Project.md`
+- [Project](docs/project.md): purpose, status and decisions.
+- [Documentation index](docs/README.md): feature details and operations.
+- [Changelog](CHANGELOG.md): changes and historical coverage.
 
 ## Architecture
 
-Open-source collection of Claude Code skills and plugins. Two categories:
-- **Personal OS Plugin** (`plugins/personal-os/`) — interactive wizard for building Obsidian vaults with SQLite + Python scripts
-- **Obsidian Skills** (`skills/obsidian/`) — 4 standalone skills for Obsidian fluency
-
-```
-claude-powerups/
-├── .claude-plugin/
-│   ├── plugin.json              ← Repo-level plugin metadata
-│   └── marketplace.json         ← Marketplace catalog (v1.0.0)
-├── plugins/
-│   └── personal-os/             ← Personal OS plugin
-│       ├── .claude-plugin/plugin.json
-│       ├── CLAUDE.md            ← Plugin-specific guide for Claude
-│       ├── skills/setup/        ← /personal-os:setup wizard
-│       ├── skills/scan/         ← /personal-os:scan scanner
-│       ├── templates/           ← File templates ({{placeholder}} syntax)
-│       └── scripts/             ← Python script templates (.py.tmpl)
-├── skills/
-│   └── obsidian/                ← Obsidian skill collection
-│       ├── obsidian-cleanup/    ← /obsidian-cleanup (active skill)
-│       ├── obsidian-markdown/   ← Passive reference
-│       ├── obsidian-bases/      ← Passive reference
-│       └── obsidian-canvas/     ← Passive reference
-├── install.sh                   ← Installs skills to ~/.claude/skills/
-└── README.md
-```
+Standalone skills live in skills/obsidian; plugins/personal-os bundles setup, scan, templates and scripts.
 
 ## Key Files
 
-| File | Purpose |
-|------|---------|
-| `install.sh` | Finds all `SKILL.md` files, copies skill dirs to `~/.claude/skills/`, strips READMEs |
-| `.claude-plugin/marketplace.json` | Marketplace catalog for `/plugin marketplace add` |
-| `plugins/personal-os/CLAUDE.md` | Plugin-specific guide — design decisions, data layers, testing |
-| `plugins/personal-os/skills/setup/SKILL.md` | Main wizard (bootstrap + migrate modes) |
-| `plugins/personal-os/skills/scan/SKILL.md` | Vault scanner |
-| `skills/obsidian/obsidian-cleanup/SKILL.md` | `/obsidian-cleanup` — vault health audit |
+`install.sh`, `.claude-plugin/marketplace.json`, `plugins/personal-os/CLAUDE.md`.
 
 ## Patterns & Conventions
 
-- **Skills** are single `SKILL.md` files. Parent directory name = skill name.
-- **Plugins** bundle skills with templates/scripts under `.claude-plugin/plugin.json`.
-- **Templates** use `{{placeholder}}` with Handlebars-style `{{#each}}` / `{{#if}}` blocks.
-- **Script templates** use `.py.tmpl` extension — Claude fills in domain-specific content at runtime.
-- **Everything is universal** — no hardcoded user-specific content. All content is discovered through interviews or scans.
-- **Three data layers** (Personal OS) — SQLite (timestamped numeric), Obsidian Bases (structured notes), plain markdown (freeform).
-
-## Installation Methods
-
-1. **Marketplace**: `/plugin marketplace add Mykhailobabkin/claude-powerups` then `/plugin install personal-os@claude-powerups`
-2. **Direct load**: `claude --plugin-dir ./plugins/personal-os`
-3. **Skills only**: `./install.sh` copies skills to `~/.claude/skills/`
-
-## Dev Commands
-
-```bash
-# Install skills locally
-./install.sh
-
-# Test plugin locally
-claude --plugin-dir ./plugins/personal-os
-
-# Check what install.sh would find
-find skills -name "SKILL.md" -type f | sort
-```
+Keep templates universal; discover user context through setup or scanning. Stage explicit paths; never use `git add -A`. Keep secrets and generated output untracked. Record completed changes in CHANGELOG.md.
 
 ## Deploy
 
-- **GitHub:** `Mykhailobabkin/claude-powerups` (public)
-- **No CI/CD** — manual releases, users install via marketplace or `install.sh`
+Users install via marketplace, local plugin loading or install.sh.
 
-## Git Conventions
+## Dev Commands
 
-- Branch from `main`
-- Use naming: `feature/`, `fix/`, `hotfeature/`, `hotfix/`, `design/`
-- Create PRs, never push directly to main
+`bash -n install.sh` checks syntax. Installation changes local skills; run only when requested.
 
 ## Gotchas
 
-- **Claude Code HAS a native plugin system.** Don't reinvent — it exists since v1.0.33. Always check official docs before claiming a feature doesn't exist.
-- **Everything must be universal.** No references to Misha's vault structure (BRAIN, Body, Brand, etc.) in templates. All content is discovered through interviews or scans.
-- **Repo location.** The repo is at `~/Developer/personal/projects/claude-powerups/`, not `~/claude-powerups/`.
-- **vault-setup is retired.** `/personal-os:setup` is a superset of the old `/vault-setup` skill. Don't recreate it.
-- **README duplication on merge.** After merging PRs, re-read the merged file to check for duplicates or merge artifacts.
+- Keep Personal OS plugin-specific guidance in its nested CLAUDE.md; do not recreate the retired vault-setup skill.
