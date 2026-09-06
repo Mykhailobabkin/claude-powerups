@@ -11,5 +11,5 @@ tags: [project-documentation]
 - New here: [project context](project.md).
 - Working rules: [agent guide](../CLAUDE.md).
 - Change history: [changelog](../CHANGELOG.md).
-- [features/project-reference.md](features/project-reference.md)
+- [project.md](project.md)
 - [operations/reference.md](operations/reference.md)

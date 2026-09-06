@@ -1,5 +1,5 @@
 ---
-title: "Claude Powerups"
+title: "claude-powerups project"
 status: active
 created: 2026-09-06
 last_updated: 2026-09-06
@@ -8,22 +8,41 @@ tags: [project-documentation]
 
 # Claude Powerups
 
-Reusable Claude Code skills and the Personal OS plugin.
+Open-source Claude Code skills and plugins. GitHub: `Mykhailobabkin/claude-powerups` (public).
 
-## Current state
+## Components
 
-Repository structure reviewed on 2026-09-06. This documentation pass does not verify live services or release readiness.
+### Personal OS Plugin (`plugins/personal-os/`)
+Interactive wizard that builds Obsidian vaults with SQLite + Python scripts. Two skills:
+- `/personal-os:setup` — bootstrap new vault or migrate existing one
+- `/personal-os:scan` — scan and analyze existing vault structure
 
-Standalone skills live in skills/obsidian; plugins/personal-os bundles setup, scan, templates and scripts.
+### Obsidian Skills (`skills/obsidian/`)
+4 standalone skills for Obsidian fluency:
+- `obsidian-cleanup` — vault health audit (active skill, used as `/obsidian-cleanup`)
+- `obsidian-markdown` — wikilink and callout syntax reference
+- `obsidian-bases` — .base file syntax for filters, formulas, views
+- `obsidian-canvas` — canvas file format reference
 
-## Decisions
+## Related
 
-Keep project knowledge with source code; retain personal knowledge outside this repository until its private migration.
+- Blog article: Advanced Claude Code Setup — Published article covering skills, CLAUDE.md patterns, hooks
+- Blog article: Claude Code Memory — Published article on Obsidian-based memory architecture
+- Skill Evolution Ideas — Concept note on strategic compaction and /evolve command
 
-## Open questions
+## Install
 
-Keep Personal OS plugin-specific guidance in its nested CLAUDE.md; do not recreate the retired vault-setup skill.
+```bash
+# Skills only
+./install.sh
 
-## Origin
+# Plugin (local testing)
+claude --plugin-dir ./plugins/personal-os
 
-Consolidated from existing repository documentation and available project notes.
+# Marketplace
+/plugin marketplace add Mykhailobabkin/claude-powerups
+```
+
+## Documentation ownership
+
+This is the project narrative. Operational details live in [the docs index](README.md); historical changes live in [CHANGELOG](../CHANGELOG.md). Code and configuration govern current behaviour.

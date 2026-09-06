@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- **Shared documentation checks.** Added model-neutral rule entry points, staged-file checks and CI validation; consolidated current project navigation. Application behaviour is unchanged.
 
 - **Project documentation migration**
   - **What:** Consolidated project context and added the standard documentation map; application behaviour is unchanged.
