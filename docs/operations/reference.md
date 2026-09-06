@@ -6,7 +6,7 @@ last_updated: 2026-09-06
 tags: [project-documentation]
 ---
 
-> Detailed technical reference retained from the prior guide. For current entry points and corrections, read [the agent guide](../../CLAUDE.md). External service state is not reverified here.
+> Detailed technical reference retained from the prior guide. For current entry points and corrections, read [the agent guide](../../AGENTS.md). External service state is not reverified here.
 
 # Claude Powerups — Guide for Claude
 
@@ -25,7 +25,7 @@ claude-powerups/
 ├── plugins/
 │   └── personal-os/             ← Personal OS plugin
 │       ├── .claude-plugin/plugin.json
-│       ├── CLAUDE.md            ← Plugin-specific guide for Claude
+│       ├── AGENTS.md            ← Plugin-specific guide for Claude
 │       ├── skills/setup/        ← /personal-os:setup wizard
 │       ├── skills/scan/         ← /personal-os:scan scanner
 │       ├── templates/           ← File templates ({{placeholder}} syntax)
@@ -46,7 +46,7 @@ claude-powerups/
 |------|---------|
 | `install.sh` | Finds all `SKILL.md` files, copies skill dirs to `~/.claude/skills/`, strips READMEs |
 | `.claude-plugin/marketplace.json` | Marketplace catalog for `/plugin marketplace add` |
-| `plugins/personal-os/CLAUDE.md` | Plugin-specific guide — design decisions, data layers, testing |
+| `plugins/personal-os/AGENTS.md` | Plugin-specific guide — design decisions, data layers, testing |
 | `plugins/personal-os/skills/setup/SKILL.md` | Main wizard (bootstrap + migrate modes) |
 | `plugins/personal-os/skills/scan/SKILL.md` | Vault scanner |
 | `skills/obsidian/obsidian-cleanup/SKILL.md` | `/obsidian-cleanup` — vault health audit |
@@ -84,11 +84,9 @@ find skills -name "SKILL.md" -type f | sort
 - **GitHub:** `Mykhailobabkin/claude-powerups` (public)
 - **No CI/CD** — manual releases, users install via marketplace or `install.sh`
 
-## Git Conventions
+## Shared workflow
 
-- Branch from `main`
-- Use naming: `feature/`, `fix/`, `hotfeature/`, `hotfix/`, `design/`
-- Create PRs, never push directly to main
+Use ~/.agents/AGENTS.md for branch, PR and release conventions.
 
 ## Gotchas
 
