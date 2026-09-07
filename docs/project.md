@@ -24,6 +24,10 @@ Interactive wizard that builds Obsidian vaults with SQLite + Python scripts. Two
 - `obsidian-bases` — .base file syntax for filters, formulas, views
 - `obsidian-canvas` — canvas file format reference
 
+### YouTube analysis skill (`skills/youtube-analyze/`)
+
+`youtube-analyze` retrieves video transcripts and compiles source-grounded insights. It is a separate shipped skill alongside the four Obsidian skills.
+
 ## Related
 
 - Blog article: Advanced Claude Code Setup — Published article covering skills, CLAUDE.md patterns, hooks

@@ -18,7 +18,8 @@ def reserved(root):
 
 def staged_errors(ci=False):
     errors=[]
-    branch=os.environ.get("GITHUB_HEAD_REF") or os.environ.get("BITBUCKET_BRANCH") or git("branch","--show-current").strip()
+    branch=(os.environ.get("GITHUB_HEAD_REF") or os.environ.get("BITBUCKET_BRANCH")) if ci else None
+    branch=branch or git("branch","--show-current").strip()
     default=git("symbolic-ref","--quiet","--short","refs/remotes/origin/HEAD").strip().split("/")[-1] if subprocess.run(["git","symbolic-ref","--quiet","refs/remotes/origin/HEAD"],capture_output=True).returncode==0 else "main"
     if not ci and (branch in {"main","master",default} or not BRANCH.fullmatch(branch)):errors.append("Use a branch named type/short-name; never commit on the default branch.")
     base=os.environ.get("AGENT_RULES_BASE")
